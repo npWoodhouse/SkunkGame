@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://crsjke5qx2skw"]
+
+[ext_resource type="ArrayMesh" uid="uid://vin7ps5byuul" path="res://WaveFunctionTwo/Mesh/drownedvestigefoundations_Plane_050.res" id="1_lr8tc"]
+
+[node name="foundation-X" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+mesh = ExtResource("1_lr8tc")

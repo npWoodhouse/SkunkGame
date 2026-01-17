@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://ca208hj80w2w0"]
+
+[ext_resource type="Script" path="res://Weppons/hitbox.gd" id="1_d2y0c"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_elu0e"]
+radius = 2.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_pg67a"]
+radius = 2.0
+height = 4.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_228gq"]
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 1)
+
+[node name="Hitbox" type="Area3D" node_paths=PackedStringArray("point")]
+collision_mask = 3
+script = ExtResource("1_d2y0c")
+point = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_elu0e")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_pg67a")
+skeleton = NodePath("../CollisionShape3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_228gq")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+autostart = true

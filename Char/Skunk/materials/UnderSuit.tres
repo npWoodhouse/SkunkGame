@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://64oycfcs4kie"]
+
+[ext_resource type="Texture2D" uid="uid://cap84ln20s7bi" path="res://Char/Skunk/materials/Textures/UnderSuitAlbido.png" id="1_xvoh4"]
+
+[resource]
+resource_name = "Skunk"
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_xvoh4")
+texture_filter = 0

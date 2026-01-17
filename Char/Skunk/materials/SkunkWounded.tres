@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cgq10l1sikqky"]
+
+[ext_resource type="Texture2D" uid="uid://r1t0wyd7bnow" path="res://Char/Skunk/materials/Textures/SkunkWounded.png" id="1_ep5tt"]
+
+[resource]
+resource_name = "Skunk"
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_ep5tt")
+texture_filter = 0

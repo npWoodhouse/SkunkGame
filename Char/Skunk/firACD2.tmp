@@ -1,0 +1,203 @@
+[gd_scene load_steps=23 format=3 uid="uid://nl2lakav2kry"]
+
+[ext_resource type="Script" path="res://Char/Skunk/first_person_player_rigid_body.gd" id="1_qpwu3"]
+[ext_resource type="Script" path="res://Char/Skunk/spring_arm_pivot.gd" id="2_7kmf2"]
+[ext_resource type="Script" path="res://Char/Skunk/State Machine/state_machine.gd" id="3_vwnfn"]
+[ext_resource type="Script" path="res://Char/Skunk/State Machine/Jump.gd" id="4_i2fv5"]
+[ext_resource type="PackedScene" uid="uid://c1ge77vent0jw" path="res://Char/Skunk/rope.tscn" id="4_wmoit"]
+[ext_resource type="Script" path="res://Char/Skunk/State Machine/Hold.gd" id="5_intip"]
+[ext_resource type="Script" path="res://Char/Skunk/State Machine/Sword_L1.gd" id="5_urnwh"]
+[ext_resource type="Script" path="res://Char/Skunk/State Machine/swing.gd" id="6_8wdtt"]
+[ext_resource type="Script" path="res://Char/Skunk/State Machine/sword_l_2.gd" id="6_ond7c"]
+[ext_resource type="Script" path="res://Char/Skunk/State Machine/me_too_you.gd" id="7_1pag1"]
+[ext_resource type="Script" path="res://Char/Skunk/State Machine/sword_l_3.gd" id="7_kwqx5"]
+[ext_resource type="Script" path="res://Char/Skunk/State Machine/you_to_me.gd" id="8_u42nu"]
+[ext_resource type="Script" path="res://Char/Skunk/State Machine/sword_h_1.gd" id="9_1uodq"]
+[ext_resource type="Script" path="res://Char/Skunk/State Machine/Fall.gd" id="9_biilm"]
+[ext_resource type="Script" path="res://Char/Skunk/State Machine/air_sword_l_1.gd" id="11_6uajm"]
+[ext_resource type="Script" path="res://Char/Skunk/State Machine/air_sword_h_1.gd" id="12_5riks"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_7yscn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dm7q6"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s0grp"]
+radius = 0.4
+height = 1.8
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_35uqp"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_in442"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_55air"]
+albedo_color = Color(1, 0, 0, 1)
+
+[node name="Player" type="RigidBody3D" node_paths=PackedStringArray("_rig", "GroundCheck", "spring_arm_pivot", "spring_arm") groups=["UnHookable"]]
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 40.0
+gravity_scale = 5.0
+linear_damp = 1.0
+angular_damp = 1.0
+script = ExtResource("1_qpwu3")
+_rig = NodePath("spring arm pivot/SpringArm3D/Camera3D/MeshInstance3D")
+GroundCheck = NodePath("GroundCheck")
+spring_arm_pivot = NodePath("spring arm pivot")
+spring_arm = NodePath("spring arm pivot/SpringArm3D")
+
+[node name="spring arm pivot" type="Node3D" parent="." node_paths=PackedStringArray("spring_arm")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 4, 0)
+script = ExtResource("2_7kmf2")
+spring_arm = NodePath("SpringArm3D")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="spring arm pivot"]
+spring_length = 5.0
+
+[node name="RayCast3D" type="RayCast3D" parent="spring arm pivot/SpringArm3D"]
+transform = Transform3D(0.3, 0, 0, 0, -1.31134e-08, -0.3, 0, 0.3, -1.31134e-08, 0, 0, -0.837045)
+exclude_parent = false
+target_position = Vector3(0, -50, 0)
+debug_shape_custom_color = Color(1, 0, 1, 1)
+debug_shape_thickness = 4
+
+[node name="Camera3D" type="Camera3D" parent="spring arm pivot/SpringArm3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="spring arm pivot/SpringArm3D/Camera3D"]
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0, -1)
+mesh = SubResource("SphereMesh_7yscn")
+surface_material_override/0 = SubResource("StandardMaterial3D_dm7q6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_s0grp")
+
+[node name="body" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.001, 0.0934711, 0)
+mesh = SubResource("CapsuleMesh_35uqp")
+skeleton = NodePath("../../spring arm pivot")
+
+[node name="visor" type="MeshInstance3D" parent="CollisionShape3D/body"]
+transform = Transform3D(0.5, 0, 0, 0, 0.1, 0, 0, 0, 0.5, 0.001, 0.42, 0.371754)
+mesh = SubResource("CylinderMesh_in442")
+skeleton = NodePath("../../spring arm pivot")
+surface_material_override/0 = SubResource("StandardMaterial3D_55air")
+
+[node name="GroundCheck" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.625174, 0)
+hit_from_inside = true
+hit_back_faces = false
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="rope" parent="." instance=ExtResource("4_wmoit")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="State_machine" type="Node" parent="." node_paths=PackedStringArray("starting_state", "Fall", "PlayerRB", "spring_arm_pivot", "GroundCheck", "rig", "ray", "cross_hair")]
+script = ExtResource("3_vwnfn")
+starting_state = NodePath("Fall")
+Fall = NodePath("Fall")
+PlayerRB = NodePath("..")
+spring_arm_pivot = NodePath("../spring arm pivot")
+GroundCheck = NodePath("../GroundCheck")
+rig = NodePath("../spring arm pivot/SpringArm3D/Camera3D/MeshInstance3D")
+ray = NodePath("../spring arm pivot/SpringArm3D/RayCast3D")
+cross_hair = NodePath("../spring arm pivot/SpringArm3D/Camera3D/MeshInstance3D")
+
+[node name="Jump" type="Node" parent="State_machine" node_paths=PackedStringArray("Idle", "Fall", "PlayerRB", "State_Machine")]
+script = ExtResource("4_i2fv5")
+Idle = NodePath("../Hold")
+Fall = NodePath("../Fall")
+PlayerRB = NodePath("../..")
+State_Machine = NodePath("..")
+
+[node name="Fall" type="Node" parent="State_machine" node_paths=PackedStringArray("Harpoon_Idle", "Sword_air_L1", "Sword_air_R1", "Sword_Hold", "Swing", "me_to_you", "RB", "State_Machine", "ray", "rope", "PlayerRB", "cross_hair")]
+script = ExtResource("9_biilm")
+Harpoon_Idle = NodePath("../Hold")
+Sword_air_L1 = NodePath("AirSword_L1")
+Sword_air_R1 = NodePath("AirSword_H1")
+Sword_Hold = NodePath("../Hold")
+Swing = NodePath("../Hold/Swing")
+me_to_you = NodePath("Me_to_you")
+RB = NodePath("../..")
+State_Machine = NodePath("..")
+ray = NodePath("../../spring arm pivot/SpringArm3D/RayCast3D")
+rope = NodePath("../../rope")
+PlayerRB = NodePath("../..")
+cross_hair = NodePath("../../spring arm pivot/SpringArm3D/Camera3D/MeshInstance3D")
+
+[node name="AirSword_L1" type="Node" parent="State_machine/Fall" node_paths=PackedStringArray("Sword_hold", "Sword_L2", "Sword_R1", "Harpoon", "MeToYou")]
+script = ExtResource("11_6uajm")
+Sword_hold = NodePath("../../Hold")
+Sword_L2 = NodePath(".")
+Sword_R1 = NodePath("../AirSword_H1")
+Harpoon = NodePath("../../Hold/Swing")
+MeToYou = NodePath("../Me_to_you")
+
+[node name="AirSword_H1" type="Node" parent="State_machine/Fall" node_paths=PackedStringArray("Fall")]
+script = ExtResource("12_5riks")
+Fall = NodePath("..")
+
+[node name="Me_to_you" type="Node" parent="State_machine/Fall" node_paths=PackedStringArray("State_Machine", "PlayerRB", "Sword_Idle", "rope")]
+script = ExtResource("7_1pag1")
+State_Machine = NodePath("../..")
+PlayerRB = NodePath("../../..")
+Sword_Idle = NodePath("../../Hold")
+rope = NodePath("../../../rope")
+
+[node name="Hold" type="Node" parent="State_machine" node_paths=PackedStringArray("State_Machine", "sword_Idle", "swing", "you_to_me", "SwordL1", "SwordH1", "Fall", "Jump", "ray", "rope", "PlayerRB", "cross_hair")]
+script = ExtResource("5_intip")
+State_Machine = NodePath("..")
+sword_Idle = NodePath("../Jump")
+swing = NodePath("Swing")
+you_to_me = NodePath("You_to_me")
+SwordL1 = NodePath("Sword_L1")
+SwordH1 = NodePath("Sword_H1")
+Fall = NodePath("../Fall")
+Jump = NodePath("../Jump")
+ray = NodePath("../../spring arm pivot/SpringArm3D/RayCast3D")
+rope = NodePath("../../rope")
+PlayerRB = NodePath("../..")
+cross_hair = NodePath("../../spring arm pivot/SpringArm3D/Camera3D/MeshInstance3D")
+
+[node name="Sword_L1" type="Node" parent="State_machine/Hold" node_paths=PackedStringArray("Sword_hold", "Harpoon", "YouToMe", "Sword_L2", "Sword_R1")]
+script = ExtResource("5_urnwh")
+Sword_hold = NodePath("..")
+Harpoon = NodePath("../Swing")
+YouToMe = NodePath("../You_to_me")
+Sword_L2 = NodePath("../Sword_L2")
+Sword_R1 = NodePath("../Sword_H1")
+
+[node name="Sword_L2" type="Node" parent="State_machine/Hold" node_paths=PackedStringArray("Sword_hold", "Sword_L3", "Sword_R1", "Harpoon", "YouToMe")]
+script = ExtResource("6_ond7c")
+Sword_hold = NodePath("..")
+Sword_L3 = NodePath("../Sword_L3")
+Sword_R1 = NodePath("../Sword_H1")
+Harpoon = NodePath("../Swing")
+YouToMe = NodePath("../You_to_me")
+
+[node name="Sword_L3" type="Node" parent="State_machine/Hold" node_paths=PackedStringArray("Sword_hold", "Sword_R1")]
+script = ExtResource("7_kwqx5")
+Sword_hold = NodePath("..")
+Sword_R1 = NodePath("../Sword_H1")
+
+[node name="Sword_H1" type="Node" parent="State_machine/Hold" node_paths=PackedStringArray("falling")]
+script = ExtResource("9_1uodq")
+falling = NodePath("../../Fall")
+
+[node name="Swing" type="Node" parent="State_machine/Hold" node_paths=PackedStringArray("State_Machine", "PlayerRB", "Idle", "rope")]
+script = ExtResource("6_8wdtt")
+State_Machine = NodePath("../..")
+PlayerRB = NodePath("../../..")
+Idle = NodePath("../../Fall")
+rope = NodePath("../../../rope")
+
+[node name="You_to_me" type="Node" parent="State_machine/Hold" node_paths=PackedStringArray("State_Machine", "PlayerRB", "fall", "rope")]
+script = ExtResource("8_u42nu")
+State_Machine = NodePath("../..")
+PlayerRB = NodePath("../../..")
+fall = NodePath("../../Fall")
+rope = NodePath("../../../rope")
+
+[node name="Timer" type="Timer" parent="."]

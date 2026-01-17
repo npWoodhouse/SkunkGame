@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://o8ubydp6yilr"]
+
+[ext_resource type="Script" path="res://Char/Grunt/FIREBALL/fireball.gd" id="1_ctqto"]
+[ext_resource type="SpriteFrames" uid="uid://c1rin7ic0uj6w" path="res://Char/Grunt/FIREBALL/anim.tres" id="2_23i4x"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fa3hv"]
+radius = 0.1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_f26oc"]
+
+[node name="FIREBALL" type="CharacterBody3D"]
+collision_layer = 8388608
+collision_mask = 8388608
+script = ExtResource("1_ctqto")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_fa3hv")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+pixel_size = 0.02
+billboard = 1
+texture_filter = 0
+sprite_frames = ExtResource("2_23i4x")
+frame_progress = 0.504711
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_f26oc")

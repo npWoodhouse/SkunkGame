@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bg45iwbqw4arg"]
+
+[ext_resource type="Texture2D" uid="uid://c1qc7oamgu6g8" path="res://Inports/Skunk/Textures/Face.png" id="1_i4jij"]
+
+[resource]
+resource_name = "mouth"
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_i4jij")
+texture_filter = 2

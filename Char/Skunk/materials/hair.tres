@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c0ut4lm2fmcwh"]
+
+[ext_resource type="Texture2D" uid="uid://div3v5d7d3kxq" path="res://Inports/Other/hair.png" id="1_l7hpe"]
+
+[resource]
+resource_name = "hair"
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+depth_draw_mode = 1
+shading_mode = 0
+albedo_texture = ExtResource("1_l7hpe")
+texture_filter = 2

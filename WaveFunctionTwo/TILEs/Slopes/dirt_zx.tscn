@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://byenlrnmaxk8k"]
+
+[ext_resource type="ArrayMesh" uid="uid://qn3nq0t6n414" path="res://WaveFunctionTwo/Mesh/19.res" id="1_leod7"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_h4pmg"]
+data = PackedVector3Array(0.7999, 1.4, -0.8, 2.4, 1.6, -2.4, 2.4, 1.6, -0.8, 0.7999, 1.4, -0.8, 0.7999, 1.4, -2.4, 2.4, 1.6, -2.4, 2.4, 1.6, -0.8, 0.7999, 1.6, 0.7999, 0.7999, 1.4, -0.8, 2.4, 1.6, -0.8, 2.4, 1.6, 0.7999, 0.7999, 1.6, 0.7999, 2.4, 1.6, 0.7999, 0.7999, 1.6, 2.4, 0.7999, 1.6, 0.7999, 2.4, 1.6, 0.7999, 2.4, 1.6, 2.4, 0.7999, 1.6, 2.4, 0.7999, 1.6, 2.4, -0.8001, 1.4, 0.7999, 0.7999, 1.6, 0.7999, 0.7999, 1.6, 2.4, -0.8001, 1.6, 2.4, -0.8001, 1.4, 0.7999, 0.7999, 1.6, 0.7999, -0.8001, 1, -0.8, 0.7999, 1.4, -0.8, 0.7999, 1.6, 0.7999, -0.8001, 1.4, 0.7999, -0.8001, 1, -0.8, 0.7999, 1.4, -0.8, -0.8001, 0.9, -2.4, 0.7999, 1.4, -2.4, 0.7999, 1.4, -0.8, -0.8001, 1, -0.8, -0.8001, 0.9, -2.4, -0.8001, 1.4, 0.7999, -2.4, 0.9, -0.8, -0.8001, 1, -0.8, -0.8001, 1.4, 0.7999, -2.4, 1.4, 0.7999, -2.4, 0.9, -0.8, -0.8001, 1, -0.8, -2.4, 0.1, -2.4, -0.8001, 0.9, -2.4, -0.8001, 1, -0.8, -2.4, 0.9, -0.8, -2.4, 0.1, -2.4, -0.8001, 1.6, 2.4, -2.4, 1.4, 0.7999, -0.8001, 1.4, 0.7999, -0.8001, 1.6, 2.4, -2.4, 1.6, 2.4, -2.4, 1.4, 0.7999)
+
+[node name="DirtZX" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+mesh = ExtResource("1_leod7")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_h4pmg")

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Tile3D" load_steps=3 format=3 uid="uid://vtn7robmhfpu"]
+
+[ext_resource type="Script" path="res://WaveFunctionTwo/Scripts/Tile_3D.gd" id="1_ixibh"]
+[ext_resource type="PackedScene" uid="uid://byenlrnmaxk8k" path="res://WaveFunctionTwo/TILEs/Slopes/dirt_zx.tscn" id="2_hh641"]
+
+[resource]
+script = ExtResource("1_ixibh")
+id = "DirtZX"
+tile_scene = ExtResource("2_hh641")
+PosZ_neighbor = "dirt"
+NegZ_neighbor = "slopeR"
+PosX_neighbor = "dirt"
+NegX_neighbor = "slopeL"
+PosY_neighbor = "air"
+NegY_neighbor = "NULL"

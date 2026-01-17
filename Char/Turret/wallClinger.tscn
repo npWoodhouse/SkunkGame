@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://bt0n4tc8etvgm"]
+
+[ext_resource type="Script" path="res://Char/Turret/WallClinger.gd" id="1_hiyox"]
+[ext_resource type="PackedScene" uid="uid://b6aqdq2y65uia" path="res://Levels/box.tscn" id="2_cryp2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uxyp0"]
+size = Vector3(3, 1, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_a8g15"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t2vc2"]
+albedo_color = Color(1, 0, 0, 1)
+
+[node name="StaticBody3D" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_uxyp0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(1.5, 0, 0, 0, 0.5, 0, 0, 0, 1.5, 0, 0, 0)
+mesh = SubResource("BoxMesh_a8g15")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_t2vc2")
+
+[node name="Node3D" type="Node3D" parent="." node_paths=PackedStringArray("Head", "base")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+script = ExtResource("1_hiyox")
+Head = NodePath("box")
+base = NodePath("..")
+
+[node name="box" parent="Node3D" groups=["ENEMY"] instance=ExtResource("2_cryp2")]

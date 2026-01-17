@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://ce862qhnbxj2"]
+
+[ext_resource type="PackedScene" uid="uid://brxr5ewhbs1o5" path="res://Levels/enemy.tscn" id="1_3wgf4"]
+[ext_resource type="PackedScene" uid="uid://bt0n4tc8etvgm" path="res://Levels/wallClinger.tscn" id="2_26cdb"]
+[ext_resource type="PackedScene" uid="uid://b6aqdq2y65uia" path="res://Levels/box.tscn" id="3_kdk0d"]
+[ext_resource type="PackedScene" uid="uid://qajm311rt0tw" path="res://STinker/thirdPersonPlayer.tscn" id="4_ub52q"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v6eba"]
+size = Vector3(40, 1, 40)
+
+[sub_resource type="BoxMesh" id="BoxMesh_n1h87"]
+size = Vector3(40, 1, 40)
+
+[node name="Level _2" type="Node"]
+
+[node name="map geometry" type="Node" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="map geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="map geometry/StaticBody3D"]
+shape = SubResource("BoxShape3D_v6eba")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="map geometry/StaticBody3D"]
+mesh = SubResource("BoxMesh_n1h87")
+
+[node name="objects" type="Node" parent="."]
+
+[node name="ENEMY" parent="objects" instance=ExtResource("1_3wgf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -2)
+
+[node name="StaticBody3D" parent="objects" instance=ExtResource("2_26cdb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 4)
+
+[node name="box" parent="objects" instance=ExtResource("3_kdk0d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, -5)
+
+[node name="box2" parent="objects" instance=ExtResource("3_kdk0d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1, -5)
+
+[node name="box3" parent="objects" instance=ExtResource("3_kdk0d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 3, -5)
+
+[node name="Player" parent="objects" instance=ExtResource("4_ub52q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 6)

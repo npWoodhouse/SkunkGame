@@ -1,0 +1,36 @@
+[gd_scene load_steps=20 format=3 uid="uid://hyc8801jjqg7"]
+
+[ext_resource type="PackedScene" uid="uid://cxbkr03oscoyc" path="res://WaveFunctionTwo/wave_func_ver_2.tscn" id="1_a7udd"]
+[ext_resource type="Resource" uid="uid://bf6lbf2s8s8f6" path="res://WaveFunctionTwo/TileData/Dirt.tres" id="2_sxx2i"]
+[ext_resource type="Script" path="res://WaveFunctionTwo/Scripts/Tile_3D.gd" id="3_xeo3f"]
+[ext_resource type="Resource" uid="uid://b3uhrx14v6huu" path="res://WaveFunctionTwo/TileData/NULL.tres" id="4_57pku"]
+[ext_resource type="Resource" uid="uid://b20bis67yyt5k" path="res://WaveFunctionTwo/TileData/air.tres" id="5_oq23v"]
+[ext_resource type="Resource" uid="uid://thctqx80imc1" path="res://WaveFunctionTwo/TileData/basin.tres" id="6_5a43v"]
+[ext_resource type="Resource" uid="uid://g8q0htiyysqp" path="res://WaveFunctionTwo/TileData/Slopes/slope_neg_z.tres" id="7_8811r"]
+[ext_resource type="Resource" uid="uid://cv7tcedccn3s" path="res://WaveFunctionTwo/TileData/Slopes/slope_pos_z.tres" id="8_g61jq"]
+[ext_resource type="Resource" uid="uid://tigasyfgvutm" path="res://WaveFunctionTwo/TileData/Slopes/slope_pos_x.tres" id="9_3pt7g"]
+[ext_resource type="Resource" uid="uid://da1v8t3kfpllg" path="res://WaveFunctionTwo/TileData/Slopes/slope_neg_x.tres" id="10_84sdu"]
+[ext_resource type="Resource" uid="uid://cuudra7xbgqkb" path="res://WaveFunctionTwo/TileData/Slopes/slopeZ-X.tres" id="11_yieh7"]
+[ext_resource type="Resource" uid="uid://ci7rcaytr34sx" path="res://WaveFunctionTwo/TileData/Slopes/slope-ZX.tres" id="12_207db"]
+[ext_resource type="Resource" uid="uid://dwd8hb4sxqu2f" path="res://WaveFunctionTwo/TileData/Slopes/slopeZX.tres" id="13_l6cvo"]
+[ext_resource type="Resource" uid="uid://lqm51yi2y4x" path="res://WaveFunctionTwo/TileData/Slopes/slope-Z-X.tres" id="14_0nkt0"]
+[ext_resource type="Resource" uid="uid://61g4fymxn2m1" path="res://WaveFunctionTwo/TileData/Slopes/DirtZ-X.tres" id="15_tbkpr"]
+[ext_resource type="Resource" uid="uid://dwxesnv237t8n" path="res://WaveFunctionTwo/TileData/Slopes/Dirt-Z-X.tres" id="16_miojk"]
+[ext_resource type="Resource" uid="uid://c2bxd7isj2q51" path="res://WaveFunctionTwo/TileData/Slopes/Dirt-ZX.tres" id="17_lxywj"]
+[ext_resource type="Resource" uid="uid://vtn7robmhfpu" path="res://WaveFunctionTwo/TileData/Slopes/DirtZX.tres" id="18_dcqku"]
+[ext_resource type="ArrayMesh" uid="uid://v8c32p42sxeu" path="res://WaveFunctionTwo/Mesh/water.res" id="19_gs3rj"]
+
+[node name="Room10x10x5" type="Node3D"]
+
+[node name="WaveFuncVer2" parent="." instance=ExtResource("1_a7udd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4, 0, -5.4)
+CellsToColapse = Array[int]([5, 95])
+PresetTile = ExtResource("2_sxx2i")
+width = 10
+depth = 10
+height = 1
+Tile_data = Array[ExtResource("3_xeo3f")]([ExtResource("4_57pku"), ExtResource("5_oq23v"), ExtResource("2_sxx2i"), ExtResource("6_5a43v"), ExtResource("7_8811r"), ExtResource("8_g61jq"), ExtResource("9_3pt7g"), ExtResource("10_84sdu"), ExtResource("11_yieh7"), ExtResource("12_207db"), ExtResource("13_l6cvo"), ExtResource("14_0nkt0"), ExtResource("15_tbkpr"), ExtResource("16_miojk"), ExtResource("17_lxywj"), ExtResource("18_dcqku")])
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+mesh = ExtResource("19_gs3rj")

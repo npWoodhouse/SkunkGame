@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxbkr03oscoyc"]
+
+[ext_resource type="Script" path="res://WaveFunctionTwo/Scripts/wave_func_ver_2.gd" id="1_sx1jp"]
+
+[node name="WaveFuncVer2" type="Node3D"]
+script = ExtResource("1_sx1jp")

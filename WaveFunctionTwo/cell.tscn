@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyhiih3cctuef"]
+
+[ext_resource type="Script" path="res://WaveFunctionTwo/Scripts/cell.gd" id="1_4tdfp"]
+[ext_resource type="Texture2D" uid="uid://07gv1byo7ygf" path="res://icon.svg" id="1_aiu4w"]
+
+[node name="Cell" type="Node3D"]
+script = ExtResource("1_4tdfp")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+visible = false
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("1_aiu4w")

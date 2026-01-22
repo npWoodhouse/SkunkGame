@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=4 uid="uid://b5jv1leqckb"]
+[gd_scene load_steps=7 format=4 uid="uid://b5jv1leqckb"]
 
+[ext_resource type="Material" uid="uid://der6qgcnx7hit" path="res://Shaders/new_standard_material_3d.tres" id="1_ro6sv"]
 [ext_resource type="Texture2D" uid="uid://dxx6q2gyjjk2f" path="res://WaveFunctionTwo/Inports/DVShores_drownedvestige.png" id="2_8dt5h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hppk8"]
@@ -48,6 +49,7 @@ data = PackedVector3Array(0.7999, 1.6, -0.8, 2.4, 1.6, -2.4, 2.4, 1.6, -0.8, 0.7
 
 [node name="dirt" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+material_override = ExtResource("1_ro6sv")
 mesh = SubResource("ArrayMesh_38pu4")
 skeleton = NodePath("")
 

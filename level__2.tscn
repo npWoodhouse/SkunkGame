@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ce862qhnbxj2"]
+[gd_scene load_steps=21 format=3 uid="uid://ce862qhnbxj2"]
 
 [ext_resource type="PackedScene" uid="uid://brxr5ewhbs1o5" path="res://Char/Grunt/enemy.tscn" id="1_3wgf4"]
 [ext_resource type="Script" path="res://level__2.gd" id="1_hvv6t"]
@@ -40,6 +40,18 @@ size = Vector3(5, 20, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m5x7t"]
 albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1fcra"]
+size = Vector3(60, 20, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3qx5n"]
+size = Vector3(60, 20, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y4v35"]
+size = Vector3(2, 20, 64)
+
+[sub_resource type="BoxMesh" id="BoxMesh_441im"]
+size = Vector3(2, 20, 64)
 
 [node name="Level _2" type="Node"]
 script = ExtResource("1_hvv6t")
@@ -165,5 +177,37 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 6)
 [node name="Grunt" parent="." instance=ExtResource("1_3wgf4")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -8, 4, -5)
 
-[node name="Room10x10x5" parent="." instance=ExtResource("6_xjqvl")]
+[node name="Room10x10" type="Node" parent="."]
+
+[node name="Room10x10x5" parent="Room10x10" instance=ExtResource("6_xjqvl")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 90, -2, 0)
+
+[node name="StaticBody3D6" type="StaticBody3D" parent="Room10x10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90, 11, 31)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room10x10/StaticBody3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = SubResource("BoxShape3D_1fcra")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room10x10/StaticBody3D6/CollisionShape3D"]
+mesh = SubResource("BoxMesh_3qx5n")
+
+[node name="StaticBody3D7" type="StaticBody3D" parent="Room10x10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90, 11, -31)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room10x10/StaticBody3D7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = SubResource("BoxShape3D_1fcra")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room10x10/StaticBody3D7/CollisionShape3D"]
+mesh = SubResource("BoxMesh_3qx5n")
+
+[node name="StaticBody3D8" type="StaticBody3D" parent="Room10x10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 121, 11, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room10x10/StaticBody3D8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+shape = SubResource("BoxShape3D_y4v35")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room10x10/StaticBody3D8/CollisionShape3D"]
+mesh = SubResource("BoxMesh_441im")

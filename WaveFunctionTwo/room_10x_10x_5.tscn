@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://hyc8801jjqg7"]
+[gd_scene load_steps=23 format=3 uid="uid://hyc8801jjqg7"]
 
 [ext_resource type="PackedScene" uid="uid://cxbkr03oscoyc" path="res://WaveFunctionTwo/wave_func_ver_2.tscn" id="1_a7udd"]
 [ext_resource type="Resource" uid="uid://bf6lbf2s8s8f6" path="res://WaveFunctionTwo/TileData/Dirt.tres" id="2_sxx2i"]
@@ -19,12 +19,22 @@
 [ext_resource type="Resource" uid="uid://c2bxd7isj2q51" path="res://WaveFunctionTwo/TileData/Slopes/Dirt-ZX.tres" id="17_lxywj"]
 [ext_resource type="Resource" uid="uid://vtn7robmhfpu" path="res://WaveFunctionTwo/TileData/Slopes/DirtZX.tres" id="18_dcqku"]
 [ext_resource type="ArrayMesh" uid="uid://v8c32p42sxeu" path="res://WaveFunctionTwo/Mesh/water.res" id="19_gs3rj"]
+[ext_resource type="Shader" uid="uid://c7ivkrmsmypc" path="res://Shaders/water.tres" id="20_ha5em"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2ctke"]
+size = Vector2(12, 12)
+subdivide_width = 30
+subdivide_depth = 30
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5wxfe"]
+render_priority = 3
+shader = ExtResource("20_ha5em")
+shader_parameter/ColorParameter = Color(0.576471, 0.478431, 0.227451, 1)
 
 [node name="Room10x10x5" type="Node3D"]
 
 [node name="WaveFuncVer2" parent="." instance=ExtResource("1_a7udd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4, 0, -5.4)
-CellsToColapse = Array[int]([5, 95])
 PresetTile = ExtResource("2_sxx2i")
 width = 10
 depth = 10
@@ -33,4 +43,10 @@ Tile_data = Array[ExtResource("3_xeo3f")]([ExtResource("4_57pku"), ExtResource("
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+visible = false
 mesh = ExtResource("19_gs3rj")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+mesh = SubResource("PlaneMesh_2ctke")
+surface_material_override/0 = SubResource("ShaderMaterial_5wxfe")

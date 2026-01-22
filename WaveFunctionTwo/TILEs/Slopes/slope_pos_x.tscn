@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://b3vfjblllytfg"]
+[gd_scene load_steps=4 format=3 uid="uid://b3vfjblllytfg"]
 
+[ext_resource type="Material" uid="uid://der6qgcnx7hit" path="res://Shaders/new_standard_material_3d.tres" id="1_ner60"]
 [ext_resource type="ArrayMesh" uid="uid://cp5dv2jwqju8o" path="res://WaveFunctionTwo/Mesh/26.res" id="1_upos2"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_062sq"]
@@ -9,6 +10,7 @@ data = PackedVector3Array(0.7999, 0.9, 0.7999, 2.4, 0.1, 2.4, 0.7999, 0.9, 2.4, 
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+material_override = ExtResource("1_ner60")
 mesh = ExtResource("1_upos2")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
